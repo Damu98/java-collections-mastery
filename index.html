@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Java Collections Framework — Mastery</title>
+<meta name="description" content="An interactive, textbook-quality guide to mastering the Java Collections Framework." />
+
+<!-- ============================================================
+     Fonts
+============================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<!-- ============================================================
+     Tailwind CSS (CDN, no build step)
+============================================================ -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+        },
+        colors: {
+          brand: {
+            50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 300: '#93c5fd',
+            400: '#60a5fa', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8',
+            800: '#1e40af', 900: '#1e3a8a', 950: '#172554',
+          },
+        },
+        boxShadow: {
+          card: '0 1px 2px 0 rgba(0,0,0,0.04), 0 1px 3px 0 rgba(0,0,0,0.06)',
+        },
+        keyframes: {
+          fadeIn: { '0%': { opacity: 0, transform: 'translateY(4px)' }, '100%': { opacity: 1, transform: 'translateY(0)' } },
+          popIn: { '0%': { opacity: 0, transform: 'scale(0.96)' }, '100%': { opacity: 1, transform: 'scale(1)' } },
+        },
+        animation: {
+          fadeIn: 'fadeIn 0.25s ease-out',
+          popIn: 'popIn 0.18s ease-out',
+        },
+      },
+    },
+  };
+</script>
+
+<!-- ============================================================
+     Syntax highlighting for the interactive code viewer
+============================================================ -->
+<link id="hljs-light-theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" />
+<link id="hljs-dark-theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/java.min.js"></script>
+
+<!-- ============================================================
+     React + Babel (CDN, no build step)
+============================================================ -->
+<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; }
+  code, pre, .font-mono-code { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+
+  /* thin, theme-aware scrollbars */
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(148,163,184,0.5); border-radius: 9999px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(148,163,184,0.8); }
+
+  /* highlight.js container tweaks */
+  pre.hljs-pre code.hljs { background: transparent !important; padding: 0 !important; }
+
+  #app-loading-fallback {
+    position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+    background: #0f172a; color: #cbd5e1; font-family: 'Inter', sans-serif; z-index: 9999;
+  }
+</style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200 transition-colors duration-200">
+
+<div id="root">
+  <div id="app-loading-fallback">
+    <div class="flex flex-col items-center gap-3">
+      <div class="h-8 w-8 border-2 border-brand-400 border-t-transparent rounded-full animate-spin"></div>
+      <p class="text-sm tracking-wide">Loading Java Collections Mastery…</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     Application source, loaded in dependency order.
+     Classic (non-module) scripts share one global scope, so files
+     can reference names declared in earlier files directly.
+============================================================ -->
+
+<!-- Data layer -->
+<script type="text/babel" src="./js/data/collections.js"></script>
+<script type="text/babel" src="./js/data/registry.js"></script>
+
+<!-- Core hooks / cross-cutting concerns -->
+<script type="text/babel" src="./js/theme.js"></script>
+<script type="text/babel" src="./js/router.js"></script>
+<script type="text/babel" src="./js/search.js"></script>
+
+<!-- Reusable UI primitives (the same primitives are reused by every phase) -->
+<script type="text/babel" src="./js/components/ui/Icons.js"></script>
+<script type="text/babel" src="./js/components/ui/Badge.js"></script>
+<script type="text/babel" src="./js/components/ui/Card.js"></script>
+<script type="text/babel" src="./js/components/ui/Tabs.js"></script>
+<script type="text/babel" src="./js/components/ui/CodeBlock.js"></script>
+<script type="text/babel" src="./js/components/ui/ComplexityTable.js"></script>
+<script type="text/babel" src="./js/components/ui/ComparisonTable.js"></script>
+<script type="text/babel" src="./js/components/ui/Quiz.js"></script>
+<script type="text/babel" src="./js/components/ui/Diagram.js"></script>
+<script type="text/babel" src="./js/components/ui/Collapsible.js"></script>
+
+<!-- Layout & navigation -->
+<script type="text/babel" src="./js/components/Sidebar.js"></script>
+<script type="text/babel" src="./js/components/TopBar.js"></script>
+<script type="text/babel" src="./js/components/Layout.js"></script>
+<script type="text/babel" src="./js/components/Breadcrumb.js"></script>
+
+<!-- Pages -->
+<script type="text/babel" src="./js/components/Home.js"></script>
+<script type="text/babel" src="./js/components/CollectionView.js"></script>
+<script type="text/babel" src="./js/components/NotFound.js"></script>
+
+<!-- Written content (Phase 1: Foundations) -->
+<script type="text/babel" src="./js/content/overview.js"></script>
+
+<!-- Written content (Phase 2: Lists) -->
+<script type="text/babel" src="./js/content/arraylist.js"></script>
+<script type="text/babel" src="./js/content/linkedlist.js"></script>
+<script type="text/babel" src="./js/content/vector.js"></script>
+<script type="text/babel" src="./js/content/stack.js"></script>
+
+<!-- Written content (Phase 3: Sets) -->
+<script type="text/babel" src="./js/content/hashset.js"></script>
+<script type="text/babel" src="./js/content/linkedhashset.js"></script>
+<script type="text/babel" src="./js/content/treeset.js"></script>
+<script type="text/babel" src="./js/content/enumset.js"></script>
+
+<!-- Written content (Phase 4: Maps) -->
+<script type="text/babel" src="./js/content/hashmap.js"></script>
+<script type="text/babel" src="./js/content/linkedhashmap.js"></script>
+<script type="text/babel" src="./js/content/treemap.js"></script>
+<script type="text/babel" src="./js/content/hashtable.js"></script>
+<script type="text/babel" src="./js/content/concurrenthashmap.js"></script>
+<script type="text/babel" src="./js/content/weakhashmap.js"></script>
+<script type="text/babel" src="./js/content/identityhashmap.js"></script>
+<script type="text/babel" src="./js/content/enummap.js"></script>
+
+<!-- Written content (Phase 5: Queues) -->
+<script type="text/babel" src="./js/content/queue-interface.js"></script>
+<script type="text/babel" src="./js/content/priorityqueue.js"></script>
+<script type="text/babel" src="./js/content/arraydeque.js"></script>
+<script type="text/babel" src="./js/content/concurrentlinkedqueue.js"></script>
+<script type="text/babel" src="./js/content/linkedblockingqueue.js"></script>
+<script type="text/babel" src="./js/content/arrayblockingqueue.js"></script>
+<script type="text/babel" src="./js/content/priorityblockingqueue.js"></script>
+<script type="text/babel" src="./js/content/delayqueue.js"></script>
+<script type="text/babel" src="./js/content/synchronousqueue.js"></script>
+
+<!-- Root component + mount -->
+<script type="text/babel" src="./js/App.js"></script>
+<script type="text/babel" src="./js/main.js"></script>
+
+</body>
+</html>
